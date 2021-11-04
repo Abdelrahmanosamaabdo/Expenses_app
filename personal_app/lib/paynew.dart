@@ -38,49 +38,59 @@ class _PaynewState extends State<Paynew> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Card(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 295,
-                  child: Column(
-                    children: [
-                      Container(
-                        child: TextField(
-                          decoration:
-                              InputDecoration(labelText: 'Enter item name'),
-                          cursorColor: Colors.orange,
-                          controller: item,
-                        ),
+          Column(
+            children: [
+              Card(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 295,
+                      child: Column(
+                        children: [
+                          Container(
+                            child: TextField(
+                              decoration:
+                                  InputDecoration(labelText: 'Enter item name'),
+                              cursorColor: Colors.orange,
+                              controller: item,
+                            ),
+                          ),
+                          Container(
+                            child: TextField(
+                              decoration:
+                                  InputDecoration(labelText: 'Enter price'),
+                              cursorColor: Colors.orange,
+                              controller: price,
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        child: TextField(
-                          decoration: InputDecoration(labelText: 'Enter price'),
-                          cursorColor: Colors.orange,
-                          controller: price,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 100,
-                  child: FlatButton(
-                    child: Text(
-                      'ADD',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[600],
-                          fontWeight: FontWeight.w900),
                     ),
-                    onPressed: () => _addition(item.text, price.text),
-                  ),
+                    Container(
+                      width: 100,
+                      child: FlatButton(
+                        child: Text(
+                          'ADD',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blue[600],
+                              fontWeight: FontWeight.w900),
+                        ),
+                        onPressed: () => _addition(item.text, price.text),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Container(
+                height: 400,
+                child: SingleChildScrollView(
+                  child: Paylist(_payment),
+                ),
+              ),
+            ],
           ),
-          Paylist(_payment),
           Container(
             width: double.infinity,
             height: 50,

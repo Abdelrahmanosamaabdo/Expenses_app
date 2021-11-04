@@ -27,23 +27,25 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Colors.blue[900],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Card(
-            color: Colors.orange[700],
-            child: Container(
-              width: double.infinity,
-              height: 150,
-              child: const Text(
-                'bar',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 25, color: Colors.blue),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Card(
+              color: Colors.orange[700],
+              child: Container(
+                width: double.infinity,
+                height: 150,
+                child: const Text(
+                  'bar',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 25, color: Colors.blue),
+                ),
               ),
             ),
-          ),
-          Paynew(),
-        ],
+            Paynew(),
+          ],
+        ),
       ),
       backgroundColor: Colors.blue[500],
     );
