@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class Payments {
   final int number;
   final String name;
-  final String amount;
+  final double amount;
   final DateTime date;
 
   Payments({

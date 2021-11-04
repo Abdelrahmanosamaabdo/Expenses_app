@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './payfinal.dart';
+import 'paynew.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Payfinal(),
+          Paynew(),
         ],
       ),
       backgroundColor: Colors.blue[500],

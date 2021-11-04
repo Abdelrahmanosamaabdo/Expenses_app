@@ -1,50 +1,102 @@
 import 'package:flutter/material.dart';
+import './paylist.dart';
+import './payments.dart';
 
-class Paynew extends StatelessWidget {
-  final Function additionfunction;
+class Paynew extends StatefulWidget {
+  const Paynew({Key? key}) : super(key: key);
+
+  @override
+  _PaynewState createState() => _PaynewState();
+}
+
+class _PaynewState extends State<Paynew> {
   final item = TextEditingController();
   final price = TextEditingController();
 
-  Paynew(this.additionfunction);
+  final List<Payments> _payment = [];
+  double _total = 0.0;
+  int _x = 0;
+  void _addition(String item, String price) {
+    _x++;
+    _total += double.parse(price);
+    double pricetwo = double.parse(price);
+    final _new = Payments(
+        number: _x, name: item, amount: pricetwo, date: DateTime.now());
+
+    print(_new.number);
+
+    setState(() {
+      _payment.add(_new);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
+    return Container(
+      width: double.infinity,
+      height: 598,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 295,
-            child: Column(
+          Card(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  child: TextField(
-                    decoration: InputDecoration(labelText: 'Enter item name'),
-                    cursorColor: Colors.orange,
-                    controller: item,
+                  width: 295,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: TextField(
+                          decoration:
+                              InputDecoration(labelText: 'Enter item name'),
+                          cursorColor: Colors.orange,
+                          controller: item,
+                        ),
+                      ),
+                      Container(
+                        child: TextField(
+                          decoration: InputDecoration(labelText: 'Enter price'),
+                          cursorColor: Colors.orange,
+                          controller: price,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
-                  child: TextField(
-                    decoration: InputDecoration(labelText: 'Enter price'),
-                    cursorColor: Colors.orange,
-                    controller: price,
+                  width: 100,
+                  child: FlatButton(
+                    child: Text(
+                      'ADD',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.blue[600],
+                          fontWeight: FontWeight.w900),
+                    ),
+                    onPressed: () => _addition(item.text, price.text),
                   ),
                 ),
               ],
             ),
           ),
+          Paylist(_payment),
           Container(
-            width: 100,
-            child: FlatButton(
-              child: Text(
-                'ADD',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.blue[600],
-                    fontWeight: FontWeight.w900),
-              ),
-              onPressed: additionfunction(item.text, price.text),
+            width: double.infinity,
+            height: 50,
+            color: Colors.orange,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '$_total',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
+                  ),
+                )
+              ],
             ),
           ),
         ],
@@ -52,3 +104,5 @@ class Paynew extends StatelessWidget {
     );
   }
 }
+
+class Coulumn {}
