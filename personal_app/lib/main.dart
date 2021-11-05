@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'paynew.dart';
+import 'package:personal_app/payments.dart';
+import './paynew.dart';
+import './paychart.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +22,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final item = TextEditingController();
-
   final price = TextEditingController();
 
   void _info(BuildContext ctx) {
@@ -66,6 +67,18 @@ Good luck saving your money!!''',
     );
   }
 
+  final List<Payments> _userPays = [];
+
+  List<Payments> get _recentPays {
+    return _userPays.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,11 +88,11 @@ Good luck saving your money!!''',
           style: TextStyle(color: Colors.orange[400]),
         ),
         actions: <Widget>[
-          FlatButton(
+          IconButton(
             onPressed: () => _info(context),
-            child: Text(
-              'Info',
-              style: TextStyle(color: Colors.orange[400], fontSize: 16),
+            icon: Icon(
+              Icons.info_outline,
+              color: Colors.orange,
             ),
           ),
         ],
@@ -89,18 +102,7 @@ Good luck saving your money!!''',
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Card(
-              color: Colors.orange,
-              child: Container(
-                width: double.infinity,
-                height: 150,
-                child: const Text(
-                  ' ',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25, color: Colors.blue),
-                ),
-              ),
-            ),
+            Paychart(_recentPays),
             Paynew(),
           ],
         ),

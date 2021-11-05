@@ -118,5 +118,3 @@ class _PaynewState extends State<Paynew> {
     );
   }
 }
-
-class Coulumn {}
