@@ -50,7 +50,7 @@ class Paylist extends StatelessWidget {
                 width: 100,
                 height: 50,
                 child: Text(
-                  '${x.amount}\$',
+                  '${x.amount.toStringAsFixed(2)}\$',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     fontStyle: FontStyle.italic,

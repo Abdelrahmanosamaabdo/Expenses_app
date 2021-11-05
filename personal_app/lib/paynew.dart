@@ -12,21 +12,24 @@ class Paynew extends StatefulWidget {
 class _PaynewState extends State<Paynew> {
   final item = TextEditingController();
   final price = TextEditingController();
+  final _totalempty = 'No items yet!!';
 
   final List<Payments> _payment = [];
   double _total = 0.0;
   int _x = 0;
-  void _addition(String item, String price) {
+  void _addition(String item1, String price1) {
     _x++;
-    _total += double.parse(price);
-    double pricetwo = double.parse(price);
+    _total += double.parse(price1);
+    double pricetwo = double.parse(price1);
     final _new = Payments(
-        number: _x, name: item, amount: pricetwo, date: DateTime.now());
+        number: _x, name: item1, amount: pricetwo, date: DateTime.now());
 
     print(_new.number);
 
     setState(() {
       _payment.add(_new);
+      item.text = '';
+      price.text = '';
     });
   }
 
@@ -60,6 +63,7 @@ class _PaynewState extends State<Paynew> {
                             child: TextField(
                               decoration:
                                   InputDecoration(labelText: 'Enter price'),
+                              keyboardType: TextInputType.number,
                               cursorColor: Colors.orange,
                               controller: price,
                             ),
@@ -99,7 +103,7 @@ class _PaynewState extends State<Paynew> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '$_total',
+                  '${_payment.isEmpty ? _totalempty : _total.toStringAsFixed(2)}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
